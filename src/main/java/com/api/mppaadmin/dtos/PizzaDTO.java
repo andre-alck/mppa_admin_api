@@ -1,6 +1,7 @@
 package com.api.mppaadmin.dtos;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 public class PizzaDTO {
     @NotBlank
@@ -9,7 +10,7 @@ public class PizzaDTO {
     @NotBlank
     private String description;
 
-    @NotBlank
+    @NotNull
     private double price;
 
     public String getTitle() {

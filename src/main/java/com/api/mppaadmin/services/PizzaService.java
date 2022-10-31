@@ -1,7 +1,10 @@
 package com.api.mppaadmin.services;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
+import com.api.mppaadmin.models.PizzaModel;
 import com.api.mppaadmin.repositories.PizzaRepository;
 
 @Service
@@ -10,5 +13,10 @@ public class PizzaService {
 
     public PizzaService(PizzaRepository pizzaRepository) {
         this.pizzaRepository = pizzaRepository;
+    }
+
+    @Transactional
+    public PizzaModel save(PizzaModel pizzaModel) {
+        return pizzaRepository.save(pizzaModel);
     }
 }
