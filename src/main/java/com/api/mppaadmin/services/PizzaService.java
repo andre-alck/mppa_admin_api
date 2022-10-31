@@ -19,4 +19,13 @@ public class PizzaService {
     public PizzaModel save(PizzaModel pizzaModel) {
         return pizzaRepository.save(pizzaModel);
     }
+
+    public boolean existsByTitle(String title) {
+        return pizzaRepository.existsByTitle(title);
+    }
+
+    public boolean existsByDescription(String description) {
+        return pizzaRepository.existsbyDescription(description);
+    }
+
 }
