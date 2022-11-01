@@ -9,5 +9,7 @@ import com.api.mppaadmin.models.PizzaModel;
 
 @Repository
 public interface PizzaRepository extends JpaRepository<PizzaModel, UUID> {
+    boolean existsByTitle(String title);
 
+    boolean existsByDescription(String description);
 }

@@ -29,7 +29,14 @@ public class PizzaController {
     }
 
     @PostMapping
-    public ResponseEntity<Object> addPizza(@RequestBody @Valid PizzaDTO pizzaDTO) {
+    public ResponseEntity<Object> savePizza(@RequestBody @Valid PizzaDTO pizzaDTO) {
+        if (pizzaService.existsByTitle(pizzaDTO.getTitle())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Title already exists.");
+        }
+        if (pizzaService.existsByDescription(pizzaDTO.getDescription())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Description already exists.");
+        }
+
         var pizzaModel = new PizzaModel();
         BeanUtils.copyProperties(pizzaDTO, pizzaModel);
         pizzaModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
