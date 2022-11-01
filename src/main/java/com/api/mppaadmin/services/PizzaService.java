@@ -39,4 +39,8 @@ public class PizzaService {
     public Optional<PizzaModel> findById(UUID id) {
         return pizzaRepository.findById(id);
     }
+
+    public void deleteById(UUID id) {
+        pizzaRepository.deleteById(id);
+    }
 }
