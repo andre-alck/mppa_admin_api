@@ -1,5 +1,9 @@
 package com.api.mppaadmin.services;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -26,5 +30,13 @@ public class PizzaService {
 
     public boolean existsByDescription(String description) {
         return pizzaRepository.existsByDescription(description);
+    }
+
+    public List<PizzaModel> findAll() {
+        return pizzaRepository.findAll();
+    }
+
+    public Optional<PizzaModel> findById(UUID id) {
+        return pizzaRepository.findById(id);
     }
 }
