@@ -40,6 +40,6 @@ public class PizzaController {
         var pizzaModel = new PizzaModel();
         BeanUtils.copyProperties(pizzaDTO, pizzaModel);
         pizzaModel.setRegistrationDate(LocalDateTime.now(ZoneId.of("UTC")));
-        return ResponseEntity.status(HttpStatus.OK).body(pizzaService.save(pizzaModel));
+        return ResponseEntity.status(HttpStatus.CREATED).body(pizzaService.save(pizzaModel));
     }
 }
