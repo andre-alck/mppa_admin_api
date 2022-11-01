@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -62,4 +63,21 @@ public class PizzaController {
 
         return ResponseEntity.status(HttpStatus.OK).body(pizzaModelOptional.get());
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateOnePizza(@PathVariable(value = "id") UUID id,
+            @RequestBody @Valid PizzaDTO pizzaDTO) {
+        Optional<PizzaModel> pizzaModelOptional = pizzaService.findById(id);
+        if (!pizzaModelOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(id.toString() + " not found.");
+        }
+
+        PizzaModel pizzaModel = pizzaModelOptional.get();
+        pizzaModel.setTitle(pizzaDTO.getTitle());
+        pizzaModel.setDescription(pizzaDTO.getDescription());
+        pizzaModel.setPrice(pizzaDTO.getPrice());
+
+        return ResponseEntity.status(HttpStatus.OK).body(pizzaService.save(pizzaModel));
+    }
+
 }
