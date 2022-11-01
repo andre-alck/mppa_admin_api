@@ -79,5 +79,4 @@ public class PizzaController {
 
         return ResponseEntity.status(HttpStatus.OK).body(pizzaService.save(pizzaModel));
     }
-
 }
