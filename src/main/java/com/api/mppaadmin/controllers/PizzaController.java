@@ -92,4 +92,11 @@ public class PizzaController {
 
         return ResponseEntity.status(HttpStatus.OK).body(pizzaModelOptional.get().getTitle() + " deleted.");
     }
+
+    @DeleteMapping
+    public ResponseEntity<Object> deleteAllPizzas() {
+        pizzaService.deleteAll();
+
+        return ResponseEntity.status(HttpStatus.OK).body("All pizzas deleted.");
+    }
 }

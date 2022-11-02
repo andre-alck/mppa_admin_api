@@ -43,4 +43,8 @@ public class PizzaService {
     public void deleteById(UUID id) {
         pizzaRepository.deleteById(id);
     }
+
+    public void deleteAll() {
+        pizzaRepository.deleteAll();
+    }
 }
